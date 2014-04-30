@@ -21,7 +21,6 @@ public class ScannerReadFile {
     			String line = scanner.nextLine();
     			//System.out.println(line);
     			Board board = new Board(splitLine(line));
-    			board.checkConstraints();
     		}
     		scanner.close();
     	} catch (FileNotFoundException e) {
