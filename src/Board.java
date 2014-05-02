@@ -1,11 +1,11 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class Board {
 
 	//Properties
 	int[] board;
+	int boardCounter;
 	
     public Cell sudokuBoard[][];
 
@@ -34,41 +34,64 @@ public class Board {
                sudokuBoard[i][j] = new Cell();
             }
         }
-		
-		//set rows
+        
+		ArrayList<Cell> temp;
+ 		//set rows
 		for (int i = 0; i < 9; i++) {
+            temp = new ArrayList<Cell>();
 			for (int j = 0; j < 9; j++) {
-				
+                sudokuBoard[i][j].row = i;
+                temp.add(sudokuBoard[i][j]);
 			}
+			rows[i] = temp; //adding all the numbers in a row
 		}
 		
-		//set collumns
+		//set columns
 		for (int i = 0; i < 9; i++) {
+            temp = new ArrayList<Cell>();
 			for (int j = 0; j < 9; j++) {
-			
+                sudokuBoard[j][i].column = i;
+                temp.add(sudokuBoard[j][i]);
 			}
+			rows[i] = temp; //adding all the numbers in a column
 		}
 		
 		
 		//set regions
-		for (int i = 0; i < 9; i++) {
-			for (int j = 0; j < 9; j++) {
+		for (int region = 0; region < 9; region++) {
+			temp = new ArrayList<Cell>();
+			for (int i = 0; i < 9; i++) {
+				for (int j = 0; j < 9; j++) {
 		
+				}
 			}
 		}
 		drawBoard(board); 
 	}
 	
 	//draw board with the given values
+	//the rest is 0
 	private void drawBoard(int[] line) {
+		boardCounter = 0;
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
-				
+                sudokuBoard[i][j].setValueInCell(board[boardCounter++]);
+
+                if(sudokuBoard[i][j].domain.size() == 1){
+                    //chosenVariables.add( sudokuCells[i][j] );
+			
+                }	
 			}
 		}
 	}
 	
+	//fill the domain of a cell to {1, 2...9}
 	public void setDomain() {
+        for (int i = 0; i < columns.length; i++) {
+       		for (int j = 0; j < columns[i].size(); j++) {
+       			columns[i].get(j).fillDomain();
+       		}
+       	}
 		
 	}
 	

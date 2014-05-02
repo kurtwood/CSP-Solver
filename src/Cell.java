@@ -10,10 +10,10 @@ public class Cell {
     public Cell()
     {
         domain = new ArrayList<Integer>();
-        reset();
+        fillDomain();
     }
 
-    public void setCellValue(int startValue){
+    public void setValueInCell(int startValue){
 
         //if cell is not given then add all 9 possible numbers
         if(startValue != 0)
@@ -28,7 +28,7 @@ public class Cell {
         domain.removeAll(remove);
     }
 
-    public void reset(){
+    public void fillDomain(){
         domain.clear();
         for (int i = 1; i < 10; i++)
         {
