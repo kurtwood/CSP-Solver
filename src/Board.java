@@ -53,18 +53,23 @@ public class Board {
                 sudokuBoard[j][i].column = i;
                 temp.add(sudokuBoard[j][i]);
 			}
-			rows[i] = temp; //adding all the numbers in a column
+			columns[i] = temp; //adding all the numbers in a column
 		}
-		
 		
 		//set regions
 		for (int region = 0; region < 9; region++) {
 			temp = new ArrayList<Cell>();
-			for (int i = 0; i < 9; i++) {
-				for (int j = 0; j < 9; j++) {
-		
+			for (int i = ((region/3)*3); i < (((region/3)*3)+3); i++) {
+				for (int j = ((region%3)*3); j< (((region%3)*3)+3); j++) {
+                    sudokuBoard[i][j].region = region;
+                    temp.add(sudokuBoard[i][j] );
+                    
+                    System.out.println("reg " + region + " i " + i 
+                    		+ " j " + j + " " + sudokuBoard[i][j].region);
 				}
 			}
+            regions[region] = temp;
+
 		}
 		drawBoard(board); 
 	}
@@ -90,6 +95,7 @@ public class Board {
         for (int i = 0; i < columns.length; i++) {
        		for (int j = 0; j < columns[i].size(); j++) {
        			columns[i].get(j).fillDomain();
+       			//System.out.println("i: " + i + " j: " + j);
        		}
        	}
 		
