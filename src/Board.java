@@ -100,8 +100,48 @@ public class Board {
        	}
 		
 	}
+
+	public boolean checkRegions(){
+		//Check each row
+		for(int i = 0; i <9; i++){
+			//check each column
+			for (int j = 0; j < 9; j++){
+				//Check domain size
+				if(sudokuBoard[i][j].domain.size()!=1)
+					{
+						return false;
+					}
+			}
+		}
+		return true;
+	}
+
+	public boolean checkRows(){
+		//check each row
+		for(int row = 0; row < 9; row++){
+			//check each column
+			for(int col = 0; col < 9; col++){
+				//Check numbers
+				for(int comp = col +1; comp < 9; comp++){
+					if(sudokuBoard[row][col].domain.get(0) == sudokuBoard[row][comp].domain.get(0) )
+                          return false ;
+				}
+			}
+		}
+		return true;
+	}
+
+	public boolean checkColumns(){
+		for (int col = 0; col < 9; col++){
+			for( int row = 0; row < 9; row ++){
+				for(int comp = row +1; comp < 9; comp++){
+					if(sudokuBoard[row][col].domain.get(0) == sudokuBoard[comp][col].domain.get(0)){
+						return false;
+					}
+				}
+			}
+		}
+		return true;
+	}
 	
-	public void checkConstraints() {
-		
-	}	
 }
