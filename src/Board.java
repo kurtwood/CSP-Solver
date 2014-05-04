@@ -101,7 +101,7 @@ public class Board {
 		
 	}
 
-	public boolean checkRegions(){
+	public boolean verifyRegions(){
 		//Check each row
 		for(int i = 0; i <9; i++){
 			//check each column
@@ -116,7 +116,7 @@ public class Board {
 		return true;
 	}
 
-	public boolean checkRows(){
+	public boolean verifyRows(){
 		//check each row
 		for(int i = 0; i < 9; i++){
 			//check each column
@@ -131,7 +131,7 @@ public class Board {
 		return true;
 	}
 
-	public boolean checkColumns(){
+	public boolean verifyColumns(){
 		//Check each column
 		for (int j = 0; j < 9; j++){
 			//Check each row
