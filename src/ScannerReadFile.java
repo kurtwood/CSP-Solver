@@ -21,6 +21,8 @@ public class ScannerReadFile {
     			String line = scanner.nextLine();
     			//System.out.println(line);
     			Board board = new Board(splitLine(line));
+    			Solver solver = new Solver();
+    			solver.advancedSolver(board);
     		}
     		scanner.close();
     	} catch (FileNotFoundException e) {

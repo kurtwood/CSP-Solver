@@ -3,5 +3,9 @@
 //finds a solution based on constraints.
 //Backtracking and arc consistency/something else
 public class Solver {
-
+	
+	
+	public void advancedSolver(Board board) {
+		
+	}
 }

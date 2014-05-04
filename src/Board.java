@@ -64,8 +64,8 @@ public class Board {
                     sudokuBoard[i][j].region = region;
                     temp.add(sudokuBoard[i][j] );
                     
-                    System.out.println("reg " + region + " i " + i 
-                    		+ " j " + j + " " + sudokuBoard[i][j].region);
+                    //System.out.println("reg " + region + " i " + i 
+                    	//	+ " j " + j + " " + sudokuBoard[i][j].region);
 				}
 			}
             regions[region] = temp;
