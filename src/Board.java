@@ -118,12 +118,12 @@ public class Board {
 
 	public boolean checkRows(){
 		//check each row
-		for(int row = 0; row < 9; row++){
+		for(int i = 0; i < 9; i++){
 			//check each column
-			for(int col = 0; col < 9; col++){
+			for(int j = 0; j < 9; j++){
 				//Check numbers
-				for(int comp = col +1; comp < 9; comp++){
-					if(sudokuBoard[row][col].domain.get(0) == sudokuBoard[row][comp].domain.get(0) )
+				for(int numb = j +1; numb < 9; numb++){
+					if(sudokuBoard[i][j].domain.get(0) == sudokuBoard[i][j].domain.get(0) )
                           return false ;
 				}
 			}
@@ -132,10 +132,13 @@ public class Board {
 	}
 
 	public boolean checkColumns(){
-		for (int col = 0; col < 9; col++){
-			for( int row = 0; row < 9; row ++){
-				for(int comp = row +1; comp < 9; comp++){
-					if(sudokuBoard[row][col].domain.get(0) == sudokuBoard[comp][col].domain.get(0)){
+		//Check each column
+		for (int j = 0; j < 9; j++){
+			//Check each row
+			for( int i = 0; i < 9; i ++){
+				//Check numbers
+				for(int numb = i +1; numb < 9; numb++){
+					if(sudokuBoard[i][j].domain.get(0) == sudokuBoard[numb][j].domain.get(0)){
 						return false;
 					}
 				}
