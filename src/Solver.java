@@ -35,6 +35,27 @@ public class Solver {
 	private Board split(Board board) {
 		return board;
 	}
+
+	public void easySolver (Board board)
+	{
+		if(board.verifyDomain){
+			solved = true;
+			board.writeSolution();
+		}
+
+		for(int num =1; num <= 9; num++)
+		{
+
+			if(!board.verifyRows() && !board.verifyColumns && !board.verifyRegions)
+			{
+				board.sudokuBoard[i][j] = num;
+				return true;
+			}
+
+		}
+		return false;
+	}
+
 }
 
 
