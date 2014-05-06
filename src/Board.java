@@ -102,22 +102,6 @@ public class Board {
 		
 	}
 
-	//Verify that the domains are filled in
-	public boolean verifyDomain(){
-		//Check each row
-		for(int i = 0; i <9; i++){
-			//check each column
-			for (int j = 0; j < 9; j++){
-				//Check region size
-				if(sudokuBoard[i][j].domain.size()!=1)
-					{
-						return false;
-					}
-			}
-		}
-		return true;
-	}
-
 	public boolean verifyRows(){
 		//check each row
 		for(int i = 0; i < 9; i++){
@@ -132,7 +116,6 @@ public class Board {
 		}
 		return true;
 	}
-
 
 	public boolean verifyColumns(){
 		//Check each column
