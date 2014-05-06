@@ -69,7 +69,6 @@ public class Board {
 				}
 			}
             regions[region] = temp;
-
 		}
 		drawBoard(board); 
 	}
@@ -94,8 +93,10 @@ public class Board {
 	public void setDomain() {
         for (int i = 0; i < columns.length; i++) {
        		for (int j = 0; j < columns[i].size(); j++) {
-       			columns[i].get(j).fillDomain();
+       			if (columns[i].get(j).domain.get(0) == 0) {
+       				columns[i].get(j).fillDomain();
        			//System.out.println("i: " + i + " j: " + j);
+       			}
        		}
        	}
 		
@@ -161,4 +162,15 @@ public class Board {
         }
         return print;
 	}
+	
+    public boolean verifyDomain() {
+        for (int i = 0; i < 9; i++) {
+             for (int j = 0; j < 9; j++) {
+                if(sudokuBoard[i][j].domain.size() != 1) {
+                    return false;
+                }
+             }
+        }
+        return true;
+    }
 }

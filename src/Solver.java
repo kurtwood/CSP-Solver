@@ -10,7 +10,6 @@ public class Solver {
 	public void advancedSolver (Board board) {
 		//for each cell, try each number based
 		//on the domain...
-		System.out.println("heis");
 		
 		while (!solved && !valid(board) && !constraintCheck(board)) {
 			Board split = split(board);
