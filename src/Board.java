@@ -102,6 +102,22 @@ public class Board {
 		
 	}
 
+	//Verify that the domains are filled in
+	public boolean verifyDomain(){
+		//Check each row
+		for(int i = 0; i <9; i++){
+			//check each column
+			for (int j = 0; j < 9; j++){
+				//Check domain size
+				if(sudokuBoard[i][j].domain.size()!=1)
+					{
+						return false;
+					}
+			}
+		}
+		return true;
+	}
+
 	public boolean verifyRows(){
 		//check each row
 		for(int i = 0; i < 9; i++){
@@ -132,6 +148,40 @@ public class Board {
 		}
 		return true;
 	}
+
+		/** Checks if the regions are valid
+        	* row is calculated by dividing the box number by 3 and casting to an int this way ony whole numbers are gotten
+            * then multiplied by 3 to get the row to start from. for box 0-2 this is 0  3-5 this is 3 for 6-8 this is 6.. get it?
+            * for the column this same interval is calculated by box mod 3 times 3 to calculate the column*/
+
+        public boolean verifyRegions()
+        {
+            for (int region = 0; region < 9; region++)  //each box
+             {
+                boolean[] seen ={false,false,false,false,false,false,false,false,false,};
+
+                for (int i = (((int)region/3)*3); i < (((int)region/3)*3)+3; i++)  //each row
+                 {
+                    for (int j = ((region%3)*3); j < (((region%3)*3)+3); j++)  //each column
+                    {
+                        int numbertoCheck = (sudokuCells[i][j].domain.get(0)) -1;
+                        if(seen[numbertoCheck])
+                        {
+                            //I already saw this number
+                            return false;
+                        }
+                        else
+                        {
+                            seen[numbertoCheck] = true;
+                        }
+                    }
+                 }
+
+             }
+
+            //no need to check array... 9 fields are checked per box! so 9 unique values must be found...i think
+              return true ;
+        }
 	
 	public String writeSolution() {
         
