@@ -102,8 +102,6 @@ public class Board {
 		
 	}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 	//Verify that the domains are filled in
 	public boolean verifyDomain(){
 		//Check each row
@@ -120,10 +118,6 @@ public class Board {
 		return true;
 	}
 
-=======
->>>>>>> edf87ed83916eef84fd197f7c1da54ac1541c0a3
-=======
->>>>>>> edf87ed83916eef84fd197f7c1da54ac1541c0a3
 	public boolean verifyRows(){
 		//check each row
 		for(int i = 0; i < 9; i++){
