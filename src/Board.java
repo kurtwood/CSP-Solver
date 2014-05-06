@@ -147,4 +147,18 @@ public class Board {
 		return true;
 	}
 	
+	public String writeSolution() {
+        
+		String print = "";
+        for (int i = 0; i < 9; i++) {
+        	for (int j = 0; j < 9; j++) {
+                if(sudokuBoard[i][j].domain.size() == 1) {
+                    print +=sudokuBoard[i][j].domain.get(0).toString();
+                } else {
+                    print += ".";
+                }
+            }
+        }
+        return print;
+	}
 }

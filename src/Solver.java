@@ -19,7 +19,7 @@ public class Solver {
 		}
 		if (constraintCheck(board)) {
 			solved = true;
-			writeSolution(board);
+			board.writeSolution();
 		}
 	}
 	
@@ -35,10 +35,6 @@ public class Solver {
 	
 	private Board split(Board board) {
 		return board;
-	}
-	
-	private void writeSolution(Board board) {
-		
 	}
 }
 
