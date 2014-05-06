@@ -101,7 +101,8 @@ public class Board {
 		
 	}
 
-	public boolean verifyRegions(){
+	//Verify that the domains are filled in
+	public boolean verifyDomain(){
 		//Check each row
 		for(int i = 0; i <9; i++){
 			//check each column
