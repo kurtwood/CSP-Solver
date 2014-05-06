@@ -107,7 +107,7 @@ public class Board {
 		for(int i = 0; i <9; i++){
 			//check each column
 			for (int j = 0; j < 9; j++){
-				//Check domain size
+				//Check region size
 				if(sudokuBoard[i][j].domain.size()!=1)
 					{
 						return false;
@@ -124,13 +124,14 @@ public class Board {
 			for(int j = 0; j < 9; j++){
 				//Check numbers
 				for(int numb = j +1; numb < 9; numb++){
-					if(sudokuBoard[i][j].domain.get(0) == sudokuBoard[i][j].domain.get(0) )
+					if(sudokuBoard[i][j].domain.get(0) == sudokuBoard[i][numb].domain.get(0) )
                           return false ;
 				}
 			}
 		}
 		return true;
 	}
+
 
 	public boolean verifyColumns(){
 		//Check each column
