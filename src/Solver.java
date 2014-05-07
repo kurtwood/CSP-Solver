@@ -57,7 +57,8 @@ public class Solver {
 		int valCol = splitBoard.variables.get(0).column;
 		
         ArrayList<Integer> posDomain = board.sudokuBoard[valRow][valCol].domain;
-
+	
+	
         int chosenVal = posDomain.get(0);
 
         ArrayList<Integer> removed = new ArrayList<Integer>();
@@ -93,8 +94,22 @@ public class Solver {
 	}
 	
 	private Board splitBoard(Board board) {
-		//return board;
 		return select(chooseVariable(board), board);
-	}			
+	}	
 	
+	public boolean easySolver (Board board){
+		if(board.verifyDomain()){
+			solved = true;
+			board.writeSolution();
+		}
+
+		for(int num = 1; num <= 9; num++) {
+
+			if(!board.verifyRows() && !board.verifyColumns() && !board.verifyRegions()) {
+				//board.sudokuBoard[i][j].domain.get(0) = num;
+				return true;
+			}
+		}
+		return false;
+	}
 }
