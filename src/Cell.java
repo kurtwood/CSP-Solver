@@ -24,7 +24,7 @@ public class Cell {
         }
     }
 
-    public void RemoveFromDomain(ArrayList<Integer> remove) {
+    public void removeFromDomain(ArrayList<Integer> remove) {
         domain.removeAll(remove);
     }
 

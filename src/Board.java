@@ -15,7 +15,7 @@ public class Board {
     public ArrayList<Cell> regions[] = new ArrayList[9];
 
     //?
-    public List<Cell> chosenVariables;
+    public ArrayList<Cell> variables;
 	
 	Board(int[] line) {
 		board = line;
@@ -82,7 +82,7 @@ public class Board {
                 sudokuBoard[i][j].setValueInCell(board[boardCounter++]);
 
                 if(sudokuBoard[i][j].domain.size() == 1){
-                    //chosenVariables.add( sudokuCells[i][j] );
+                    variables.add(sudokuBoard[i][j]);
 			
                 }	
 			}
@@ -100,22 +100,6 @@ public class Board {
        		}
        	}
 		
-	}
-
-	//Verify that the domains are filled in
-	public boolean verifyDomain(){
-		//Check each row
-		for(int i = 0; i <9; i++){
-			//check each column
-			for (int j = 0; j < 9; j++){
-				//Check domain size
-				if(sudokuBoard[i][j].domain.size()!=1)
-					{
-						return false;
-					}
-			}
-		}
-		return true;
 	}
 
 	public boolean verifyRows(){
@@ -164,7 +148,7 @@ public class Board {
                  {
                     for (int j = ((region%3)*3); j < (((region%3)*3)+3); j++)  //each column
                     {
-                        int numbertoCheck = (sudokuCells[i][j].domain.get(0)) -1;
+                        int numbertoCheck = (sudokuBoard[i][j].domain.get(0)) -1;
                         if(seen[numbertoCheck])
                         {
                             //I already saw this number
@@ -207,5 +191,19 @@ public class Board {
              }
         }
         return true;
+    }
+    
+    //find values that are still available
+    public void CellDomainCheck() {
+        for (int i = 0; i < 9; i++) {
+          for( int j = 0; j < 9; j++ ) {
+              //if the cell is not filled in
+             if(sudokuBoard[i][j].domain.size() > 1) {
+                 //List<Integer> remove = GetRestrictionForCell(row , col);
+            	 ArrayList<Integer> remove = sudokuBoard[i][j].domain; //change
+            	 sudokuBoard[i][j].removeFromDomain(remove);
+             }
+          }
+         }
     }
 }

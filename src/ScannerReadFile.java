@@ -22,6 +22,7 @@ public class ScannerReadFile {
     			//System.out.println(line);
     			Board board = new Board(splitLine(line));
     			Solver solver = new Solver();
+    			//solver.easySolver(board);
     			solver.advancedSolver(board);
     		}
     		scanner.close();
