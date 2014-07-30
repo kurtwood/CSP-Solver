@@ -35,4 +35,18 @@ public class Cell {
         	domain.add(i);
         }
     }
+    public Cell copy() {
+        Cell copy = new Cell();
+        copy.row = row;
+        copy.column = column;
+        copy.region = region;
+        copy.domain = new ArrayList<Integer>(domain.size());
+
+        for (int i = 0; i < domain.size(); i++) {
+            copy.domain.add(i, domain.get(i));
+
+        }
+
+        return copy;
+    }
 }

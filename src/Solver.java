@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 
 //TODO:when testing a value; remove from domain...
@@ -18,24 +19,43 @@ import java.util.ArrayList;
 public class Solver {
 	
 	boolean solved = false;
+	Restrictions res = new Restrictions();
+	
 	
 	//implementing arc consistency
 	public void advancedSolver (Board board) {
+		System.out.println("In solver");
 		//for each cell, try each number based
 		//on the domain...
 		
-		while (!solved && !valid(board) && !constraintCheck(board)) {
+		while (!solved && /*!valid(board) &&*/ !constraintCheck(board)) {
+			System.out.println("In while");
+			res.setConstraints(board);
 			Board split = splitBoard(board);
 			advancedSolver(split);
 			
 		}
 		if (constraintCheck(board)) {
+			System.out.println("In ifSolved");
 			solved = true;
 			board.writeSolution();
 		}
 	}
+	/*
+	private void setConstraints(Board board) {
+		System.out.println("In setConstraint");
+        int filledCells = board.filledCells();
+        board.cellDomainCheck();
+
+        //Constrain the cells until no longer possible
+        while(board.filledCells() != filledCells) {
+            filledCells = board.filledCells();
+            board.cellDomainCheck();
+        }
+	}*/
 	
 	private boolean constraintCheck(Board board) {
+		System.out.println("In constraintCheck");
 		return (board.verifyDomain() && 
 				board.verifyRows() && 
 				board.verifyColumns() && 
@@ -43,58 +63,21 @@ public class Solver {
 	}
 	
 	private boolean valid(Board board) {
+		System.out.println("In valid");
 		for (int i = 0; i < 9; i++) {
 			for (int j = 0; j < 9; j++) {
 				if (board.sudokuBoard[i][i].domain.size() == 0) {
+					System.out.println("In domainsize == 0");
 					return false;
 				}
 			}
 		} return true;
 	}
 	
-	private Board select(Board splitBoard, Board board) {		
-		int valRow = splitBoard.variables.get(0).row;
-		int valCol = splitBoard.variables.get(0).column;
-		
-        ArrayList<Integer> posDomain = board.sudokuBoard[valRow][valCol].domain;
-	
-	
-        int chosenVal = posDomain.get(0);
 
-        ArrayList<Integer> removed = new ArrayList<Integer>();
-        removed.add(chosenVal);
-
-        board.sudokuBoard[valRow][valCol].removeFromDomain(removed);
-
-        splitBoard.sudokuBoard[valRow][valCol].domain = new ArrayList<Integer>();
-        splitBoard.sudokuBoard[valRow][valCol].domain.add(chosenVal);
-        
-		return splitBoard;
-	}
-	
-	private Board chooseVariable(Board board) {
-		int small = 9;
-		Board split = board;
-		int defI = 0, defJ = 0;
-		for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                //select the cell with the smallest domain
-                if(split.sudokuBoard[i][j].domain.size() > 1 && 
-                		split.sudokuBoard[i][j].domain.size() < small) {
-                	defI = i;
-                	defJ = j;
-                    small = split.sudokuBoard[i][j].domain.size();
-                }
-            }
-        }
-        split.variables.clear();
-        board.variables.clear();
-        split.variables.add(split.sudokuBoard[defI][defJ]);		
-		return split;
-	}
-	
 	private Board splitBoard(Board board) {
-		return select(chooseVariable(board), board);
+		System.out.println("In splitBoard");
+		return res.select(res.chooseVariable(board), board);
 	}	
 	
 	public boolean easySolver (Board board){
